@@ -5,7 +5,7 @@ class Lista {
     
     private:
     string contato;
-    int numero;
+    long long int numero;
     
     public:
     Lista ();
@@ -45,14 +45,31 @@ void Lista::setContato(string nome) {
 
 int main() {
     
-   Lista lista [50];
-   int x = 0;
+    int qnt = 2;
+    
+   Lista* lista = new Lista[qnt];
+   int qntPessoas = 0;
    
    while(true) {
        string var;
        cin >> var;
        
        if(var == "add") {
+           if(qntPessoas == qnt) {
+               qnt *= 2;
+               
+               Lista* lista2 = new Lista[qnt];
+               
+               for(int i = 0; i < qntPessoas; i++) {
+                   lista2[i] = lista[i];
+               }
+               
+               delete [] lista;
+               lista = lista2;
+               delete [] lista2;
+               
+           }
+           
            string nome;
            cout << "Digite o nome: ";
            cin >> nome;
@@ -61,15 +78,25 @@ int main() {
            cout << "Digite o número: ";
            cin >> numero;
            
-           lista [x] = Lista(nome, numero);
-           x++;
+           lista [qntPessoas] = Lista(nome, numero);
+           qntPessoas++;
        }
        
        else if(var == "remove") {
-           String nome;
+           string nome;
            
            cout << "Quem deseja remover? ";
            cin >> nome;
+           
+           for(int i = 0; i < qntPessoas; i++) {
+               if(lista[i].getContato() == nome) {
+                   for(int j = i; j < qntPessoas; j++) {
+                       lista [j] = lista [j+1];
+                   }
+               }
+           }
+           
+           cout << "Número não encontrado" << endl;
        }
        
        else if(var == "get") {
@@ -78,7 +105,7 @@ int main() {
            cout << "Diga o numero da Pessoa: ";
            cin >> num;
            
-           for(int i = 0; i < x; i++) {
+           for(int i = 0; i < qntPessoas; i++) {
                if(lista[i].getNumero() == num) {
                    cout << "Nome: " << lista[i].getContato() << endl;
                    break;
@@ -88,12 +115,21 @@ int main() {
            cout << "Número não existe." << endl;
        }
        
+       else if(var == "print") {
+           if(qntPessoas == 0) { cout << "Lista vazia" << endl; break; }
+           
+           for(int i = 0; i < qntPessoas; i++) {
+               cout << "Nome: " << lista[i].getContato() << " " << "Número: " <<
+               lista[i].getNumero() << endl;
+           }
+       }
+       
        else if(var == "stop") {
            break;
        }
    }
 
-   cout << endl << x;
+   cout << endl << qntPessoas << " " << qnt;
     
     
     return 0;
