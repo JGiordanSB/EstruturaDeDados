@@ -27,26 +27,26 @@ Lista::Lista(string nome, int num) {
     numero = num;
 }
 
-Lista::getNumero() {
+int Lista::getNumero() {
     return numero;
 }
 
-Lista::setNumero(int num) {
+void Lista::setNumero(int num) {
     numero = num;
 }
 
-Lista::getContato() {
+string Lista::getContato() {
     return contato;
 }
 
-Lista::setContato(string nome) {
+void Lista::setContato(string nome) {
     contato = nome;
 }
 
 int main() {
     
-   Lista lista [5];
-   int i = 0;
+   Lista lista [50];
+   int x = 0;
    
    while(true) {
        string var;
@@ -54,20 +54,46 @@ int main() {
        
        if(var == "add") {
            string nome;
+           cout << "Digite o nome: ";
            cin >> nome;
            
            int numero;
+           cout << "Digite o número: ";
            cin >> numero;
            
-           lista [i] = Lista(nome, numero);
-           i++;
-       } else if(var == "stop") {
+           lista [x] = Lista(nome, numero);
+           x++;
+       }
+       
+       else if(var == "remove") {
+           String nome;
+           
+           cout << "Quem deseja remover? ";
+           cin >> nome;
+       }
+       
+       else if(var == "get") {
+           int num;
+           
+           cout << "Diga o numero da Pessoa: ";
+           cin >> num;
+           
+           for(int i = 0; i < x; i++) {
+               if(lista[i].getNumero() == num) {
+                   cout << "Nome: " << lista[i].getContato() << endl;
+                   break;
+               }
+           }
+           
+           cout << "Número não existe." << endl;
+       }
+       
+       else if(var == "stop") {
            break;
-       } else if(var == "remove") {
        }
    }
-   
-   cout << "oi";
+
+   cout << endl << x;
     
     
     return 0;
