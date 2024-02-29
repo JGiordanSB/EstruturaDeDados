@@ -66,7 +66,6 @@ int main() {
                
                delete [] lista;
                lista = lista2;
-               delete [] lista2;
                
            }
            
@@ -93,13 +92,16 @@ int main() {
                    for(int j = i; j < qntPessoas; j++) {
                        lista [j] = lista [j+1];
                    }
+                   
+                   qntPessoas --;
+                   break;
                }
            }
-           
-           cout << "Número não encontrado" << endl;
        }
        
        else if(var == "get") {
+           if(qntPessoas == 0) { cout << "Lista vazia" << endl; break; }
+           
            int num;
            
            cout << "Diga o numero da Pessoa: ";
@@ -111,8 +113,6 @@ int main() {
                    break;
                }
            }
-           
-           cout << "Número não existe." << endl;
        }
        
        else if(var == "print") {
@@ -129,7 +129,7 @@ int main() {
        }
    }
 
-   cout << endl << qntPessoas << " " << qnt;
+   cout << endl << "Quantiade de Pessoas: " << qntPessoas << "\nTamanho do array: " << qnt;
     
     
     return 0;
