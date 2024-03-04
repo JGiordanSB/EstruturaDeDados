@@ -129,7 +129,7 @@ int main() {
        }
    }
 
-   cout << endl << "Quantiade de Pessoas: " << qntPessoas << "\nTamanho do array: " << qnt;
+   cout << endl << "Quantiade de Pessoas: " << qntPessoas << "\nTamanho do Array: " << qnt;
     
     
     return 0;
