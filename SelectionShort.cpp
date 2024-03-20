@@ -1,7 +1,7 @@
 #include <iostream>
 using namespace std;
 
-void Short(int i, int* vetor, int qnt) {
+/*void Short(int i, int* vetor, int qnt) {
     int number = vetor[i];
     int indiceMenor = i;
     
@@ -23,8 +23,31 @@ void SelectionShort(int* vetor, int qnt) {
     for(int i = 0; i < qnt - 1; i++) {
         Short(i, vetor, qnt);
     }
+}*/
+
+void Short(int i, int* vetor, int qnt) {
+    int number = vetor[i];
+    int indiceMaior = i;
+    
+    for(int j = i + 1; j < qnt; j++) {
+        if(number < vetor[j]) {
+            number = vetor [j];
+            indiceMaior = j;
+        }
+    }
+    
+    int backup = vetor [i];
+    vetor [i] = number;
+    vetor [indiceMaior] = backup;
+    
 }
 
+void SelectionShort(int* vetor, int qnt) {
+    
+    for(int i = 0; i < qnt - 1; i++) {
+        Short(i, vetor, qnt);
+    }
+}
 
 
 int main() {
