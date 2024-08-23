@@ -5,16 +5,17 @@ void bubbleshort(int* vetor, int size) {
     
     while(size != 0) {
         
-        int i = 0;
         
-        if(vetor[i] > vetor[i+1]) {
-            int backup = vetor [i];
+        for(int i = 0; i < size-1; i++) {
             
-            vetor [i] = vetor[i+1];
-            vetor[i+1] = backup;
+            if(vetor[i] > vetor[i+1]) {
+                int backup = vetor [i];
+                
+                vetor [i] = vetor[i+1];
+                vetor[i+1] = backup;
+            }
         }
         
-        i ++;
         size --;
     }
 }
